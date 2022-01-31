@@ -1,0 +1,26 @@
+//this is just code for the code.org weather thing (forgot the name, this was code from very long ago lol)
+
+var cities = getColumn("Daily Weather", "City");
+var condition = getColumn("Daily Weather", "Condition Description");
+var icons = getColumn("Daily Weather", "Icon");
+var highs = getColumn("Daily Weather", "High Temperature");
+var forecastNum = getColumn("Daily Weather", "Forecast Number");
+var lows = getColumn("Daily Weather", "Low Temperature");
+
+var indices = [];
+for (var i = 0; i < forecastNum.length; i++) {
+  if(forecastNum[i] == 1)
+    appendItem(indices, i);
+}
+
+//outputs city and weather and images and things
+onEvent("forecastButton","click", function(){
+  var num = randomNumber(0, indices.length);
+  playSound("sound://category_hits/retro_game_hit_block_3.mp3");
+  setProperty("cityOutput","text", cities[num]);
+  setProperty("highTempOutput","text", highs[num]);
+  setProperty("lowTempOutput","text", lows[num]);
+  setProperty("conditionOutput","text", condition[num]);
+  setProperty("iconOutput","image", icons[num]);
+});
+
